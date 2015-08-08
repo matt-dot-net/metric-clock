@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script type="text/javascript" src="/Scripts/jquery-2.1.4.min.js"></script>
+</head>
+<body>
+    <div id="clockDiv">
+
+    </div>
+    <script src="metric-clock.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            updateClock();
+        });
+
+        function updateClock() {
+
+            var metric_time = metricClock.getTime();
+            $("#clockDiv").html(metric_time);
+            setTimeout(updateClock,200);
+
+        }
+    </script>
+</body>
+
+</html>
