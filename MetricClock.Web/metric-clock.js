@@ -26,10 +26,16 @@ function MetricClock() {
         var currentMetricSeconds = Math.floor(metricSecsSinceStart - (currentMetricHours * 10000) - (currentMetricMinutes * 100));
         if (currentMetricHours == 12)
             currentMetricHours = 0;
-        var stringTime = (1 + currentMetricHours).toString() + ":" + currentMetricMinutes.toString() + ":" + currentMetricSeconds.toString();
+        var stringTime = pad(1 + currentMetricHours,2) + ":" + pad(currentMetricMinutes,2) + ":" + pad(currentMetricSeconds,2);
 
         return stringTime;
     }
+}
+
+function pad(num, size) {
+    var s = num+"";
+    while (s.length < size) s = "0" + s;
+    return s;
 }
 
 var metricClock = new MetricClock();
