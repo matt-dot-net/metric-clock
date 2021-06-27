@@ -4,7 +4,7 @@ from datetime import datetime
 from enum import Enum
 import math
 
-app = App()
+app = App(bg="#ffffff")
 
 secRatio=25/18
 
