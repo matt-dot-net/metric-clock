@@ -1,12 +1,34 @@
-from guizero import App, Text
+from guizero import App, Text, PushButton, Box
 import datetime as dt
-from datetime import datetime, date, timedelta
-
+from datetime import datetime
+from enum import Enum
 import math
 
 app = App()
 
 secRatio=25/18
+
+class Mode(Enum):
+    Day=0
+    Night=1
+
+myMode=Mode.Day
+
+def toggleNightMode():    
+    global myMode
+    if myMode is Mode.Day:
+        myMode=Mode.Night
+        nightModeBtn.image="moon.png"
+        app.bg="#000000"
+        time_msg.text_color="#ffffff"
+    else:
+        myMode=Mode.Day
+        nightModeBtn.image="sun.png"
+        app.bg="#ffffff"
+        time_msg.text_color="#000000"
+
+button_box = Box(app, width="fill", align="bottom")
+nightModeBtn = PushButton(button_box, toggleNightMode, image="sun.png", align="right")
 
 def tick():
     now = datetime.now()
@@ -31,7 +53,7 @@ def tick():
         H=1+currentMetricHours,M=currentMetricMinutes,S=currentMetricSeconds) + now.strftime("%I:%M:%S %p")
 
 
-time_msg= Text(app,text="",width='fill',height='fill',size=240)
+time_msg= Text(app,text="",width='fill',height='fill',size=120)
 time_msg.repeat(100,tick)
 app.tk.attributes("-fullscreen",True)
 app.display()
